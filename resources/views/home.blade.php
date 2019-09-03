@@ -16,19 +16,19 @@
 
                     <div class="form-group row" align="center">
                         <div class="col-sm" style="padding-bottom: 1rem">
-                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="hola" href="control"><label style="font-size: 2rem; font-weight: bolder;">Iniciar control</label> 
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Iniciar control" href="control"><label style="font-size: 2rem; font-weight: bolder;">Iniciar control</label> 
                             <br><i class="fas fa-barcode" style="font-size: 5rem;"></i>
                             </a>
                         </div>
                         
                         <div class="col-sm" style="padding-bottom: 1rem">
-                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="hola" href=""><label style="font-size: 2rem; font-weight: bolder;">Nuevo alumno</label> 
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Nuevo alumno" href="alumno"><label style="font-size: 2rem; font-weight: bolder;">Nuevo alumno</label> 
                             <br><i class="fas fa-user-plus" style="font-size: 5rem;"></i>
                             </a>
                         </div>
 
                         <div class="col-sm" style="padding-bottom: 1rem">
-                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="hola" href=""><label style="font-size: 2rem; font-weight: bolder;">Reportes</label> 
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Reportes" href=""><label style="font-size: 2rem; font-weight: bolder;">Reportes</label> 
                             <br><i class="fas fa-file-medical-alt" style="font-size: 5rem;"></i>
                             </a>
                         </div>

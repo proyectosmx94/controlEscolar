@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Alumno;
-use App\Asistencia;
-use Carbon\Carbon;
 
-class ControlController extends Controller
+class AlumnoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class ControlController extends Controller
      */
     public function index()
     {
-        return view('control.control');
+        return view('alumno.index');
     }
 
     /**
@@ -37,30 +34,7 @@ class ControlController extends Controller
      */
     public function store(Request $request)
     {
-        $curp = $request->curp;
-    
-        $alumno = Alumno::where('curp', $curp)->first();
-
-        $date = Carbon::now();
-
-        $estado="";
-// dd($alumno->toArray());
-
-        if ($alumno) {
-            $asistencia = new Asistencia;
-            $asistencia->idAlumno   = $alumno->id;
-            $asistencia->idEscuela  = $alumno->idEscuela;
-            $asistencia->dateTime   = $date;
-            $asistencia->save();
-
-            $estado = "registrado";
-
-            return $estado;
-        }else{
-            $estado = "invalido";
-
-            return $estado;
-        }
+        //
     }
 
     /**

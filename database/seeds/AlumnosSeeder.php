@@ -13,10 +13,10 @@ class AlumnosSeeder extends Seeder
     public function run()
     {
         DB::table('alumnos')->insert([
-      	['id' => 1, 'nombre' => 'CARLOS DIAZ TORRES','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'AOPI061019MVZCRSA3'],
-      	['id' => 2, 'nombre' => 'MARIA DIAZ ROMERO','grado' => 'PRIMERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'AUBE060707HVZGZRA5'],
-      	['id' => 3, 'nombre' => 'JOSE PEDRO TORRES SANTOS','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'AUCJ061006HVZGMNA9'],
-      	['id' => 4, 'nombre' => 'PABLO JUAREZ SOTO','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'AARC060130HVZMNRA1'],
+      	['id' => 1, 'nombre' => 'CARLOS DIAZ TORRES','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'TOHN020624MVZRRMA6'],
+      	['id' => 2, 'nombre' => 'MARIA DIAZ ROMERO','grado' => 'PRIMERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'GUGJ050625HVZRRNA1'],
+      	['id' => 3, 'nombre' => 'JOSE PEDRO TORRES SANTOS','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'VAHJ040929HVZSRRA8'],
+      	['id' => 4, 'nombre' => 'PABLO JUAREZ SOTO','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'LATL940301HVZNSS02'],
       	['id' => 5, 'nombre' => 'MIGUEL ESCARLANTE TORRES','grado' => 'PRIMERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'AULE061010MVZRPSA0'],
       	['id' => 6, 'nombre' => 'LIDYA ESCOBEDO DIAZ','grado' => 'PRIMERO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'JIAA060101MVZMGRA0'],
       	['id' => 7, 'nombre' => 'RUBI SANTOS MUÑOZ','grado' => 'SEGUNDO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'ROHD061117MVZDRRA3'],

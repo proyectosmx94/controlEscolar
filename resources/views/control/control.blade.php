@@ -14,11 +14,31 @@
             <div class="card">
                 <div class="card-header">Control de alumnos</div>
                 <div class="card-body">
-                	<div style="text-align:center;padding:1em 0;"> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=large&timezone=America%2FMexico_City" width="100%" height="140" frameborder="0" seamless></iframe> </div>
+                	<div class="form-group" align="center">
+                		
+					    <div class="col-md" id="fechaEstilo">
+							<label id="diaSemana" class="diaSemana"></label>
+							<label id="dia" class="dia"></label>
+							<label>DE</label>
+							<label id="mes" class="mes"></label>
+							<label>DEL</label>
+							<label id="anio" class="anio"></label>
+					    </div>
+					    
+					    <div class="col-md" id="horaEstilo">
+							<label id="horas" class="horas"></label>
+							<label>:</label>
+							<label id="minutos" class="minutos"></label>
+							<label>:</label>
+							<label id="segundos" class="segundos"></label>
+							<label id="ampm" class="ampm"></label>
+					    </div>
+					    
+                	</div>
 
                 	<div class="form-group" align="center">
                 		<div class="col-sm-4">
-                			<input type="text" class="form-control" id="prueba">
+                			<input type="text" class="form-control" id="curp">
                 		</div>
                 	</div>
                 </div>
@@ -34,10 +54,12 @@
 <script src="{{ asset('plugins/Toastr/js/toastr.min.js') }}"></script>
 <script>
 	$(document).ready(function() {
+		$('#curp').focus().select();
+
 		toastr.options = {
 		    positionClass: 'toast-top-center'
 		};
-		$("#prueba").change(function(){
+		$("#curp").change(function(){
 			var curp= $(this).val();
 
 			if (curp.length ==18) {
@@ -46,30 +68,81 @@
 					type: 'get',
 					data: {curp: curp},
 					success: function(data){
-						$("#prueba").val('');
-						console.log("Bien");
+						$("#curp").val('');
+						$('#curp').focus().select();
+						if (data =="registrado") {
+							toastr.success('Alumno registrado');
+						}else{
+							$("#curp").val('');
+							toastr.error('Alumno no registrado. Consulte al administrador');
+						}
 			        },
 			        error: function(data){
-			            $("#prueba").val('');
-			            // toastr.error('Alumno no registrado. Consulte al administrador');
+			            $("#curp").val('');
+			            toastr.error('Alumno no registrado. Consulte al administrador');
+			            $('#curp').focus().select();
 			        }
     			});
 			}else{
 				toastr.error('Código invalido');
+				$("#curp").val('');
+				$('#curp').focus().select();
 			}
 		});
 
-		//Asignar fecha
-		var d = new Date();
-		var month = d.getMonth()+1;
-		var day = d.getDate();
+	
 
-		var output = ((''+day).length<2 ? '0' : '') + day+'/'+
-	    ((''+month).length<2 ? '0' : '') + month + '/'+
-	    d.getFullYear();
+		$(function(){
+  		var actualizarHora = function(){
+	    var fecha = new Date(),
+	        hora = fecha.getHours(),
+	        minutos = fecha.getMinutes(),
+	        segundos = fecha.getSeconds(),
+	        diaSemana = fecha.getDay(),
+	        dia = fecha.getDate(),
+	        mes = fecha.getMonth(),
+	        anio = fecha.getFullYear(),
+	        ampm;
+    
+	    var $pHoras = $("#horas"),
+	        $pSegundos = $("#segundos"),
+	        $pMinutos = $("#minutos"),
+	        $pAMPM = $("#ampm"),
+	        $pDiaSemana = $("#diaSemana"),
+	        $pDia = $("#dia"),
+	        $pMes = $("#mes"),
+	        $pAnio = $("#anio");
 
-		$("#idFecha").append(output);
+	    var semana = ['DOMINGO','LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO'];
+	    var meses = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+    
+	    $pDiaSemana.text(semana[diaSemana]);
+	    $pDia.text(dia);
+	    $pMes.text(meses[mes]);
+	    $pAnio.text(anio);
+	    if(hora>=12){
+	      hora = hora - 12;
+	      ampm = "PM";
+	    }else{
+	      ampm = "AM";
+	    }
+	    if(hora == 0){
+	      hora = 12;
+	    }
+	    if(hora<10){$pHoras.text("0"+hora)}else{$pHoras.text(hora)};
+	    if(minutos<10){$pMinutos.text("0"+minutos)}else{$pMinutos.text(minutos)};
+	    if(segundos<10){$pSegundos.text("0"+segundos)}else{$pSegundos.text(segundos)};
+	    $pAMPM.text(ampm);
+    
+  		};
+  
+  
+		  	actualizarHora();
+		  	var intervalo = setInterval(actualizarHora,1000);
 
-		//Asignar hora
+		  	$("#fechaEstilo").attr('style', 'font-size:2rem; font-weight:bolder');
+		  	$("#horaEstilo").attr('style', 'font-size:5rem; font-weight:bolder; margin-top:-35px');
+		});
+		
 	});	
-</script>
+</script>  

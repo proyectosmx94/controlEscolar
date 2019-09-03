@@ -19,5 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Control escolar
 Route::get('/control', 'ControlController@index')->name('control.index');
 Route::get('storeControl', 'ControlController@store')->name('store');
+
+//Alumno
+Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
