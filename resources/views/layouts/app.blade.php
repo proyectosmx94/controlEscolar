@@ -17,15 +17,20 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('plugins/Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        .card-header{
+        .card-header, .modal-header{
             font-weight: bolder;
             font-size: 1rem;
             color: #fff;
             background: #343A40;
         }
+        label{
+            font-weight: bolder;
+        }
     </style>
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -93,3 +98,11 @@
 <script src="{{ asset('plugins/Bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('plugins/Font_awesome/js/all.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });  
+</script>
+
+@yield('script')

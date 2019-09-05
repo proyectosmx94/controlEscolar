@@ -13,16 +13,16 @@ class AlumnosSeeder extends Seeder
     public function run()
     {
         DB::table('alumnos')->insert([
-      	['id' => 1, 'nombre' => 'CARLOS DIAZ TORRES','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'TOHN020624MVZRRMA6'],
-      	['id' => 2, 'nombre' => 'MARIA DIAZ ROMERO','grado' => 'PRIMERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'GUGJ050625HVZRRNA1'],
-      	['id' => 3, 'nombre' => 'JOSE PEDRO TORRES SANTOS','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'VAHJ040929HVZSRRA8'],
-      	['id' => 4, 'nombre' => 'PABLO JUAREZ SOTO','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'LATL940301HVZNSS02'],
-      	['id' => 5, 'nombre' => 'MIGUEL ESCARLANTE TORRES','grado' => 'PRIMERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'AULE061010MVZRPSA0'],
-      	['id' => 6, 'nombre' => 'LIDYA ESCOBEDO DIAZ','grado' => 'PRIMERO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'JIAA060101MVZMGRA0'],
-      	['id' => 7, 'nombre' => 'RUBI SANTOS MUÑOZ','grado' => 'SEGUNDO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'ROHD061117MVZDRRA3'],
-      	['id' => 8, 'nombre' => 'EMMANUEL GARCIA GARCIA','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'RUSJ060522HVZZNSA4'],
-      	['id' => 9, 'nombre' => 'JUAN JOSE DELFIN DIAZ','grado' => 'TERCERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'TESM060512MNEJNCA3'],
-      	['id' => 10, 'nombre' => 'MARIA MARIN MARIN','grado' => 'TERCERO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'TOUR060604MVZRTBA0'],
+      	['id' => 1, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'CARLOS','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'TOHN020624MVZRRMA6'],
+      	['id' => 2, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'MARIA','grado' => 'PRIMERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'GUGJ050625HVZRRNA1'],
+      	['id' => 3, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'JOSE PEDRO','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'VAHJ040929HVZSRRA8'],
+      	['id' => 4, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'PABLO','grado' => 'SEGUNDO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'LATL940301HVZNSS02'],
+      	['id' => 5, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'MIGUEL','grado' => 'PRIMERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'AULE061010MVZRPSA0'],
+      	['id' => 6, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'LIDYA','grado' => 'PRIMERO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'JIAA060101MVZMGRA0'],
+      	['id' => 7, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'RUBI','grado' => 'SEGUNDO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'ROHD061117MVZDRRA3'],
+      	['id' => 8, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'EMMANUEL','grado' => 'TERCERO', 'grupo' => 'B', 'idEscuela' => 1, 'curp' => 'RUSJ060522HVZZNSA4'],
+      	['id' => 9, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'JUAN JOSE','grado' => 'TERCERO', 'grupo' => 'A', 'idEscuela' => 1, 'curp' => 'TESM060512MNEJNCA3'],
+      	['id' => 10, 'primerApellido' =>'PRUEBA', 'segundoApellido' =>'PRUEBA', 'nombre' => 'MARIA','grado' => 'TERCERO', 'grupo' => 'C', 'idEscuela' => 1, 'curp' => 'TOUR060604MVZRTBA0'],
       	]);
     }
 }

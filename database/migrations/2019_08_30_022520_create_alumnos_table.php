@@ -16,6 +16,8 @@ class CreateAlumnosTable extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('curp');
+            $table->string('primerApellido');
+            $table->string('segundoApellido');
             $table->string('nombre');
             $table->string('grado');
             $table->string('grupo');

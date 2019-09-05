@@ -22,8 +22,8 @@
                         </div>
                         
                         <div class="col-sm" style="padding-bottom: 1rem">
-                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Nuevo alumno" href="alumno"><label style="font-size: 2rem; font-weight: bolder;">Nuevo alumno</label> 
-                            <br><i class="fas fa-user-plus" style="font-size: 5rem;"></i>
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Administrar alumnos" href="alumno"><label style="font-size: 2rem; font-weight: bolder;">Alumnos</label> 
+                            <br><i class="fas fa-users" style="font-size: 5rem;"></i>
                             </a>
                         </div>
 
