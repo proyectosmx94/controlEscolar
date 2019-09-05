@@ -47,11 +47,8 @@
 	</div>
 </div>	
 @endsection
-<script src="{{ asset('plugins/jQuery/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('plugins/Bootstrap/js/popper.min.js') }}"></script>
-<script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('plugins/Font_awesome/js/all.js') }}"></script>
-<script src="{{ asset('plugins/Toastr/js/toastr.min.js') }}"></script>
+
+@section('script')
 <script>
 	$(document).ready(function() {
 		$('#curp').focus().select();
@@ -146,3 +143,4 @@
 		
 	});	
 </script>  
+@endsection
