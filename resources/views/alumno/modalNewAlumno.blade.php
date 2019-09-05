@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md">
                         <label>Grado</label>
-                        <select class="form-control" id="">
+                        <select class="form-control" id="grado">
                             <option value="PRIMERO">PRIMERO</option>
                             <option value="SEGUNDO">SEGUNDO</option>
                             <option value="TERCERO">TERCERO</option>
@@ -38,13 +38,13 @@
                     </div>
                     <div class="col-md">
                         <label>Grupo</label>
-                        <select class="form-control" id="">
-                            <option value="">A</option>
-                            <option value="">B</option>
-                            <option value="">C</option>
-                            <option value="">D</option>
-                            <option value="">E</option>
-                            <option value="">F</option>
+                        <select class="form-control" id="grupo">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
                         </select>
                     </div>
                 </div>

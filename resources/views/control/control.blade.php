@@ -71,7 +71,7 @@
 						$("#curp").val('');
 						$('#curp').focus().select();
 						if (data =="registrado") {
-							toastr.success('Alumno registrado');
+							toastr.success('Acceso correcto');
 						}else{
 							$("#curp").val('');
 							toastr.error('Alumno no registrado. Consulte al administrador');

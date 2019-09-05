@@ -25,3 +25,4 @@ Route::get('storeControl', 'ControlController@store')->name('store');
 
 //Alumno
 Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
+Route::get('/storeAlumno', 'AlumnoController@store')->name('store');

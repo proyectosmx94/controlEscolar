@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Alumno;
+use Carbon\Carbon;
 
 class AlumnoController extends Controller
 {
@@ -34,7 +36,17 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumno = new Alumno;
+            $alumno->curp              = $request->curpAlumno;
+            $alumno->primerApellido    = $request->primerApellido;
+            $alumno->segundoApellido   = $request->segundoApellido;
+            $alumno->nombre            = $request->nombre;
+            $alumno->grado             = $request->grado;
+            $alumno->grupo             = $request->grupo;
+            $alumno->idEscuela         = "1";
+        $alumno->save();
+
+        return $alumno;
     }
 
     /**
