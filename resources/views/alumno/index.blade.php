@@ -13,7 +13,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-               		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui aut ad necessitatibus vitae rerum eum fugiat, quisquam id. Facilis mollitia odio quisquam nulla ex officiis voluptatem reprehenderit, et, nesciunt debitis?
+               		<table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Grado</th>
+                                <th scope="col">Grupo</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                            </thead>
+                        </table>
 
                 
                 </div>
@@ -43,8 +52,17 @@
                      },
             })
             .done(function(data) {
-                toastr.success('Alumno registrado');
-                location.reload();
+                swal({
+                    title: "Alumno registrado",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                    }, function(isConfirm){
+                        if (isConfirm) {     
+                            window.location.reload();
+                        } 
+                    });  
             })
             .fail(function() {
                 toastr.error('Alumno no registrado. Consulte al administrador');
@@ -53,6 +71,8 @@
                 // console.log("complete");
             });
         });
+
+        // cargar datos a tabla
     });
 </script>
 @endsection

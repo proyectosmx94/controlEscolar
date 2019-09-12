@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name('obtenerEscuelas');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Control escolar
@@ -26,3 +27,7 @@ Route::get('storeControl', 'ControlController@store')->name('store');
 //Alumno
 Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
 Route::get('/storeAlumno', 'AlumnoController@store')->name('store');
+
+// Escuela
+Route::get('/escuela', 'EscuelaController@index')->name('escuela.index');
+Route::get('/storeEscuela', 'EscuelaController@store')->name('store');

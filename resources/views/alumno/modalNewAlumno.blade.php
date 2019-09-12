@@ -8,22 +8,22 @@
                 <div class="form-group row">
                     <div class="col-md">
                         <label>Primer apellido</label>
-                        <input type="text" class="form-control" id="primerApellido">
+                        <input type="text" class="form-control mayuscula" id="primerApellido">
                     </div>
                     <div class="col-md">
                         <label>Segundo apellido</label>
-                        <input type="text" class="form-control" id="segundoApellido">
+                        <input type="text" class="form-control mayuscula" id="segundoApellido">
                     </div>
                     <div class="col-md-5">
                         <label>Nombre(s)</label>
-                        <input type="text" class="form-control" id="nombre">
+                        <input type="text" class="form-control mayuscula" id="nombre">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-7">
                         <label>CURP</label>
-                        <input type="text" class="form-control" id="curpAlumno">
+                        <input type="text" class="form-control mayuscula" id="curpAlumno">
                     </div>
                     <div class="col-md">
                         <label>Grado</label>

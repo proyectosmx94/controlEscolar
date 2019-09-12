@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('plugins/Toastr/css/toastr.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/Sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -100,10 +101,15 @@
 <script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('plugins/Font_awesome/js/all.js') }}"></script>
 <script src="{{ asset('plugins/Toastr/js/toastr.min.js') }}"></script>
+<script src="{{ asset('plugins/Sweetalert/sweetalert.min.js') }}"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
+
+        $("body").on('focusout', '.mayuscula', function(field){
+            $(this).val($(this).val().toUpperCase());
+        });
     });  
 </script>
 
