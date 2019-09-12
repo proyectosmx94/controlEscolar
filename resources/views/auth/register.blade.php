@@ -95,8 +95,8 @@
         })
         .done(function(data) {
             console.log(data);
-            var opciones = "<option>"+data.nombreEscuela+"</option>"
-            $("#idEscuela").append(opciones);
+            // var opciones = "<option>"+data.nombreEscuela+"</option>"
+            $("#idEscuela").append(data);
         })
         .fail(function() {
             console.log("error");

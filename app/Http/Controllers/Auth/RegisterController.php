@@ -45,8 +45,12 @@ class RegisterController extends Controller
     {
         $escuelas = Escuela::all();
 
+        $data = "";
+        foreach ($escuelas as $key) {
+            $data .= "<option>".$key->nombreEscuela."</option>";
+        }
         // dd($escuelas->toArray());
-        return response()->json($escuelas); 
+        return $data;
     }
 
     /**
