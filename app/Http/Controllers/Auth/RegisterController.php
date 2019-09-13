@@ -41,15 +41,20 @@ class RegisterController extends Controller
         // $this->middleware('guest');
     }
 
+    public function index()
+    {
+        return view('auth.usuariosIndex');
+    }
+
     public function obtenerEscuelas()
     {
         $escuelas = Escuela::all();
 
         $data = "";
         foreach ($escuelas as $key) {
-            $data .= "<option>".$key->nombreEscuela."</option>";
+            $data .= "<option value='".$key->clave."'>".$key->nombreEscuela."</option>";
         }
-        // dd($escuelas->toArray());
+  
         return $data;
     }
 
@@ -65,6 +70,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'claveEscuela' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -79,6 +85,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'claveEscuela' => $data['claveEscuela'],
             'password' => Hash::make($data['password']),
         ]);
     }

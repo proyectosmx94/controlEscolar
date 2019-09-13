@@ -28,8 +28,14 @@
                         </div>
 
                         <div class="col-sm" style="padding-bottom: 1rem">
-                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Reportes" href=""><label style="font-size: 2rem; font-weight: bolder;">Reportes</label> 
-                            <br><i class="fas fa-file-medical-alt" style="font-size: 5rem;"></i>
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Escuelas" href="escuela"><label style="font-size: 2rem; font-weight: bolder;">Escuelas</label> 
+                            <br><i class="fas fa-school" style="font-size: 5rem;"></i>
+                            </a>
+                        </div>
+
+                        <div class="col-sm" style="padding-bottom: 1rem">
+                            <a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Administrar usuarios del sistema" href="usuariosIndex"><label style="font-size: 2rem; font-weight: bolder;">Usuarios</label> 
+                            <br><i class="fas fa-users-cog" style="font-size: 5rem;"></i>
                             </a>
                         </div>
                     </div>                    

@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/usuariosIndex', 'Auth\RegisterController@index')->name('auth.usuariosIndex');
+
 Auth::routes();
 
 Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name('obtenerEscuelas');

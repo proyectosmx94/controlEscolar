@@ -13,7 +13,8 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name = 'MANUEL C. TELLO';
+        $user->name = 'ADMINISTRADOR';
+        $user->claveEscuela = 'MVX123';
         $user->email = 'admin@admin.com';
         $user->password = bcrypt('admin');
         $user->save();

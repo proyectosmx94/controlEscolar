@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control mayuscula @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control mayuscula @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Escuela') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="idEscuela" required>
+                                <select class="form-control" id="claveEscuela" name="claveEscuela">
                                     
                                 </select>
                             </div>
@@ -94,9 +94,7 @@
             type: 'GET',
         })
         .done(function(data) {
-            console.log(data);
-            // var opciones = "<option>"+data.nombreEscuela+"</option>"
-            $("#idEscuela").append(data);
+            $("#claveEscuela").append(data);
         })
         .fail(function() {
             console.log("error");
