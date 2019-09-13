@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SCE</title>
-
+    <title>Sistema de Control Escolar</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 

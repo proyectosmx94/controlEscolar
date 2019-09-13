@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/usuariosIndex', 'Auth\RegisterController@index')->name('auth.usuariosIndex');
-
 Auth::routes();
-
+Route::get('/usuariosIndex', 'Auth\RegisterController@index')->name('auth.usuariosIndex');
 Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name('obtenerEscuelas');
 Route::get('/home', 'HomeController@index')->name('home');
 
