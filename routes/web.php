@@ -27,6 +27,8 @@ Route::get('storeControl', 'ControlController@store')->name('store');
 //Alumno
 Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
 Route::get('/storeAlumno', 'AlumnoController@store')->name('store');
+Route::get('/getAlumnos', 'AlumnoController@getAlumnos');
+Route::get('/datosModalAlumno', 'AlumnoController@datosModalAlumno')->name('datosModalAlumno');
 
 // Escuela
 Route::get('/escuela', 'EscuelaController@index')->name('escuela.index');

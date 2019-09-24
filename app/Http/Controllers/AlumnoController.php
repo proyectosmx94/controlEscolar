@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Alumno;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
 
 class AlumnoController extends Controller
 {
@@ -92,5 +94,48 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAlumnos()
+    {
+
+        $usuario =Auth::user();
+        // dd($usuario->toArray());
+        $alumnos = Alumno::where('idEscuela', $usuario->idEscuela)->get();
+        // dd($alumnos->toArray());
+        return Datatables::of($alumnos)
+        ->addColumn('grado', function ($alumno){
+            // dd($alumno);
+            return $alumno->grado;
+        })
+        ->addColumn('grupo', function($alumno){
+            return $alumno->grupo;
+        })
+        ->addColumn('nombre', function($alumno){
+
+            return $alumno->primerApellido." ".$alumno->segundoApellido." ".$alumno->nombre;
+        })
+        ->addColumn('acciones', function($alumno){
+            $btn = '<button id="'.$alumno->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar" onclick="asignarAlumno(this)"><i class="fas fa-user-edit"></i></button>&nbsp;';
+            $btn .= '<a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar alumno" href=""><i class="fas fa-user-times"></i></a>&nbsp;';
+            return $btn;
+        })
+        ->rawColumns(['grado','grupo','nombre','acciones'])->make();
+    }
+
+    public function datosModalAlumno(Request $request)
+    {
+        $alumno = Alumno::where('id', $request->id)->first();
+// dd($alumno->toArray());
+        $data = array(    
+            'primerApellido'    => $alumno->primerApellido,
+            'segundoApellido'   => $alumno->segundoApellido,
+            'nombre'            => $alumno->nombre,
+            'curp'              => $alumno->curp,
+            'grado'             => $alumno->grado,
+            'grupo'             => $alumno->grupo
+        );
+
+        return response()->json($data); 
     }
 }

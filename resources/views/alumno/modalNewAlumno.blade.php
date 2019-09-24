@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <div class="col-md-7">
                         <label>CURP</label>
-                        <input type="text" class="form-control mayuscula" id="curpAlumno">
+                        <input type="text" class="form-control mayuscula" id="curpAlumno" maxlength="18">
                     </div>
                     <div class="col-md">
                         <label>Grado</label>

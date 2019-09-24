@@ -2,6 +2,7 @@
 
 @section('content')
 @include('alumno/modalNewAlumno')
+@include('alumno/modalEditAlumno')
 	<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -13,18 +14,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-               		<table class="table">
+               		<table class="table table-striped table-hover table-bordered dt-responsive" id="tablaAlumnos" style="font-size: .8rem;">
                         <thead>
                             <tr>
-                                <th scope="col">Grado</th>
-                                <th scope="col">Grupo</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Acciones</th>
+                                <th name="grado" scope="col">Grado</th>
+                                <th name="grupo" scope="col">Grupo</th>
+                                <th name="nombre" scope="col">Nombre</th>
+                                <th class="acciones" name="acciones" scope="col">Acciones</th>
                             </tr>
-                            </thead>
-                        </table>
+                        </thead>
+                        <tbody style="font-size: 0.8rem;">
 
-                
+                        </tbody>
+                    </table>
                 </div>
 			</div>
 		</div>
@@ -34,7 +36,33 @@
 
 @section('script')
 <script>
+    function asignarAlumno(value){
+        var url = '{{ url('') }}';
+        $("#editAlumno").modal("show");
+        //     $("#selectPersonas").html("");
+        var id = value.id;
+            $.ajax({
+                url: '{{url("/datosModalAlumno")}}',
+                type: 'get',
+                data: {id: id},
+                success: function(data){
+                    $("#editPrimerApellido").val(data.primerApellido);
+                    $("#editSegundoApellido").val(data.primerApellido);
+                    $("#editNombre").val(data.nombre);
+                    $("#editCurpAlumno").val(data.curp);
+                    $("#EditGrado").val(data.grado);
+                    $("#EditGrupo").val(data.grupo);
+                },
+                error: function(data){
+                    console.log("error");
+                }
+            });
+        }
+
     $(document).ready(function() {
+        // $('#tablaAlumnos').DataTable();
+        var url = '{{ url('') }}';
+
         $("#btnAbrirModalAlumno").click(function(event) {
             $('#nuevoAlumno').modal('show');
         });
@@ -73,6 +101,50 @@
         });
 
         // cargar datos a tabla
+        $('#tablaAlumnos').DataTable({
+            responsive: true,
+            fixedHeader: true,
+            processing: true,
+            serverSide: true,
+            ajax: url+"/getAlumnos",
+            columns: [
+                { data: 'grado', name: 'grado' },
+                { data: 'grupo', name: 'grupo' },
+                { data: 'nombre', name: 'nombre' },
+                { data: 'acciones', name: 'acciones' },
+            ],
+      
+            "language": {
+                "sProcessing":    "Procesando...",
+                "sLengthMenu":    "Mostrar _MENU_ registros",
+                "sZeroRecords":   "No se encontraron resultados",
+                "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":   "",
+                "sSearch":        "<span class='fa fa-search'></span> Buscar",
+                "sUrl":           "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":    "Último",
+                "sNext":    "Siguiente",
+                "sPrevious": "Anterior"
+            },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            },
+      
+            drawCallback: function( settings ) {
+                $('[data-toggle="tooltip"]').tooltip();
+            },
+        }).ajax.reload();
     });
+
+
 </script>
 @endsection

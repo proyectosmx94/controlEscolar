@@ -17,4 +17,9 @@ class Alumno extends Model
     'idEscuela',
     'idTutor'
   ];
+
+    public function escuela()
+    {
+        return $this->hasMany('App\Escuela','idEscuela');
+    }   
 }

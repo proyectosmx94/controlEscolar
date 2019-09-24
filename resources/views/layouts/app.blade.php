@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/Toastr/css/toastr.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/Sweetalert/sweetalert.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/DataTables/datatables.min.css') }}" rel="stylesheet">
     <style>
         .card-header, .modal-header{
             font-weight: bolder;
@@ -102,6 +103,7 @@
 <script src="{{ asset('plugins/Font_awesome/js/all.js') }}"></script>
 <script src="{{ asset('plugins/Toastr/js/toastr.min.js') }}"></script>
 <script src="{{ asset('plugins/Sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{asset('plugins/DataTables/datatables.min.js') }}"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
