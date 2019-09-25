@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-               		<table class="table table-striped table-hover table-bordered dt-responsive" id="tablaAlumnos" style="font-size: .8rem;">
+               		<table class="table table-striped table-hover table-bordered dt-responsive" id="tablaAlumnos" style="font-size: .8rem; text-align: center;">
                         <thead>
                             <tr>
                                 <th name="grado" scope="col">Grado</th>
@@ -39,7 +39,7 @@
     function asignarAlumno(value){
         var url = '{{ url('') }}';
         $("#editAlumno").modal("show");
-        //     $("#selectPersonas").html("");
+
         var id = value.id;
             $.ajax({
                 url: '{{url("/datosModalAlumno")}}',
@@ -47,11 +47,12 @@
                 data: {id: id},
                 success: function(data){
                     $("#editPrimerApellido").val(data.primerApellido);
-                    $("#editSegundoApellido").val(data.primerApellido);
+                    $("#editSegundoApellido").val(data.segundoApellido);
                     $("#editNombre").val(data.nombre);
                     $("#editCurpAlumno").val(data.curp);
                     $("#EditGrado").val(data.grado);
                     $("#EditGrupo").val(data.grupo);
+                    $("#idAlumno").val(data.idAlumno);
                 },
                 error: function(data){
                     console.log("error");
@@ -59,8 +60,37 @@
             });
         }
 
+        function eliminarAlumno(value){
+        var id = value.id;
+
+            swal({
+                title: "¿Estás seguro? ",
+                text: "Los datos del alumno se eliminaran del sistema  ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#BB1E19',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: "Cancelar",
+                }, function(isConfirm){
+                        if (isConfirm) {     
+                            $.ajax({
+                                url: '{{url("/destroyAlumno")}}',
+                                type: 'get',
+                                data: {id: id},
+                                success: function(data){
+                                    window.location.reload();
+                                },
+                                error: function(data){
+                                    console.log("error");
+                                }
+                            });
+                        }else{
+                            return false;
+                        }
+                    });  
+        }
+
     $(document).ready(function() {
-        // $('#tablaAlumnos').DataTable();
         var url = '{{ url('') }}';
 
         $("#btnAbrirModalAlumno").click(function(event) {
@@ -143,6 +173,40 @@
                 $('[data-toggle="tooltip"]').tooltip();
             },
         }).ajax.reload();
+
+        $("#btnEditAlumno").click(function(event) {
+            $.ajax({
+                url: 'editAlumno',
+                type: 'GET',
+                data:{  idAlumno:           $("#idAlumno").val(),
+                        primerApellido:     $("#editPrimerApellido").val(),
+                        segundoApellido:    $("#editSegundoApellido").val(),
+                        nombre:             $("#editNombre").val(),
+                        curpAlumno:         $("#editCurpAlumno").val(),
+                        grado:              $("#EditGrado").val(),
+                        grupo:              $("#EditGrupo").val(),
+                     },
+            })
+            .done(function(data) {
+                swal({
+                    title: "Los datos del alumno se han actualizado",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                    }, function(isConfirm){
+                        if (isConfirm) {     
+                            window.location.reload();
+                        } 
+                    });  
+            })
+            .fail(function() {
+                toastr.error('Alumno no registrado. Consulte al administrador');
+            })
+            .always(function() {
+                // console.log("complete");
+            });
+        });
     });
 
 

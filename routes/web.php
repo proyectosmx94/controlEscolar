@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/usuariosIndex', 'Auth\RegisterController@index')->name('auth.usuariosIndex');
 Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name('obtenerEscuelas');
+Route::get('/getUsuarios', 'Auth\RegisterController@getUsuarios')->name('getUsuarios');
+Route::get('/datosModalUsuario', 'Auth\RegisterController@datosModalUsuario')->name('datosModalUsuario');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Control escolar
@@ -27,6 +29,8 @@ Route::get('storeControl', 'ControlController@store')->name('store');
 //Alumno
 Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
 Route::get('/storeAlumno', 'AlumnoController@store')->name('store');
+Route::get('/editAlumno', 'AlumnoController@edit')->name('edit');
+Route::get('/destroyAlumno', 'AlumnoController@destroy')->name('destroy');
 Route::get('/getAlumnos', 'AlumnoController@getAlumnos');
 Route::get('/datosModalAlumno', 'AlumnoController@datosModalAlumno')->name('datosModalAlumno');
 

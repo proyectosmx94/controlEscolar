@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registrar usuario') }}</div>
+                <div class="card-header">{{ __('Registrar usuario') }}
+                    <div style="float: right;">
+                        <a href="{{ url('') }}/usuariosIndex" class="btn btn-primary btn-sm" id="btnAbrirModalUsuario" data-toggle="tooltip" data-placement="top" title="Regresar a vista de usuarios"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -65,7 +69,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Escuela') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="claveEscuela" name="claveEscuela">
+                                <select class="form-control" id="idEscuela" name="idEscuela">
                                     
                                 </select>
                             </div>
@@ -94,7 +98,8 @@
             type: 'GET',
         })
         .done(function(data) {
-            $("#claveEscuela").append(data);
+            $("#idEscuela").append(data);
+            
         })
         .fail(function() {
             console.log("error");

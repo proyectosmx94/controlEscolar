@@ -5,6 +5,7 @@
                 <h5 class="modal-title"><i class="fas fa-edit"></i> Editar alumno</h5>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="idAlumno">
                 <div class="form-group row">
                     <div class="col-md">
                         <label>Primer apellido</label>

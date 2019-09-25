@@ -38,6 +38,7 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario =Auth::user();
         $alumno = new Alumno;
             $alumno->curp              = $request->curpAlumno;
             $alumno->primerApellido    = $request->primerApellido;
@@ -45,7 +46,7 @@ class AlumnoController extends Controller
             $alumno->nombre            = $request->nombre;
             $alumno->grado             = $request->grado;
             $alumno->grupo             = $request->grupo;
-            $alumno->idEscuela         = "1";
+            $alumno->idEscuela         = $usuario->idEscuela;
         $alumno->save();
 
         return $alumno;
@@ -68,9 +69,21 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $usuario =Auth::user();
+
+        $alumno = Alumno::find($request->idAlumno);
+            $alumno->curp              = $request->curpAlumno;
+            $alumno->primerApellido    = $request->primerApellido;
+            $alumno->segundoApellido   = $request->segundoApellido;
+            $alumno->nombre            = $request->nombre;
+            $alumno->grado             = $request->grado;
+            $alumno->grupo             = $request->grupo;
+            $alumno->idEscuela         = $usuario->idEscuela;
+        $alumno->save();
+
+        return $alumno;
     }
 
     /**
@@ -91,9 +104,12 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $alumno = Alumno::where('id', $request->id)->first();
+        $alumno->delete();
+        
+        return $alumno;
     }
 
     public function getAlumnos()
@@ -117,7 +133,9 @@ class AlumnoController extends Controller
         })
         ->addColumn('acciones', function($alumno){
             $btn = '<button id="'.$alumno->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar" onclick="asignarAlumno(this)"><i class="fas fa-user-edit"></i></button>&nbsp;';
-            $btn .= '<a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar alumno" href=""><i class="fas fa-user-times"></i></a>&nbsp;';
+            $btn .= '<button id="'.$alumno->id.'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar alumno" onclick="eliminarAlumno(this)"><i class="fas fa-user-times"></i></button>&nbsp;';
+
+            $btn .= '<button id="'.$alumno->id.'" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Notificar a tutor"><i class="fas fa-envelope" style="color:#fff;"></i></button>&nbsp;';
             return $btn;
         })
         ->rawColumns(['grado','grupo','nombre','acciones'])->make();
@@ -127,7 +145,8 @@ class AlumnoController extends Controller
     {
         $alumno = Alumno::where('id', $request->id)->first();
 // dd($alumno->toArray());
-        $data = array(    
+        $data = array(   
+            'idAlumno'          => $alumno->id, 
             'primerApellido'    => $alumno->primerApellido,
             'segundoApellido'   => $alumno->segundoApellido,
             'nombre'            => $alumno->nombre,

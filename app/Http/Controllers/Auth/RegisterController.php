@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\User;
 use App\Escuela;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
 
 class RegisterController extends Controller
 {
@@ -52,7 +54,7 @@ class RegisterController extends Controller
 
         $data = "";
         foreach ($escuelas as $key) {
-            $data .= "<option value='".$key->clave."'>".$key->nombreEscuela."</option>";
+            $data .= "<option value='".$key->id."'>".$key->nombreEscuela."</option>";
         }
   
         return $data;
@@ -70,7 +72,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'claveEscuela' => ['required', 'string', 'max:255'],
+            'idEscuela' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -85,8 +87,52 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'claveEscuela' => $data['claveEscuela'],
+            'idEscuela' => $data['idEscuela'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function getUsuarios()
+    {
+        $usuarios = User::all();
+        
+        return Datatables::of($usuarios)
+        ->addColumn('escuela', function ($usuario){
+            // dd($usuario->idEscuela);
+            $escuela = Escuela::Where('id', $usuario->idEscuela)->get();
+            
+            foreach ($escuela as $key) {
+                $nombreEscuela = $key->nombreEscuela;
+            }
+
+            return $nombreEscuela;
+        })
+        ->addColumn('nombre', function($usuario){
+            return $usuario->name;
+        })
+        ->addColumn('correo', function($usuario){
+
+            return $usuario->email;
+        })
+        ->addColumn('acciones', function($usuario){
+            $btn = '<button id="'.$usuario->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar usuario" onclick="editarUsuario(this)"><i class="fas fa-user-edit"></i></button>&nbsp;';
+            $btn .= '<button id="'.$usuario->id.'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar usuario" onclick="eliminarUsuario(this)"><i class="fas fa-user-times"></i></button>';
+            return $btn;
+        })
+        ->rawColumns(['escuela','nombre','correo','acciones'])->make();
+    }
+
+    public function datosModalUsuario(Request $request)
+    {
+        $usuario = User::where('id', $request->id)->first();
+
+        $data = array(   
+            'idUser'    => $usuario->id, 
+            'name'      => $usuario->name,
+            'email'     => $usuario->email,
+            'password'  => $usuario->password
+        );
+
+        return response()->json($data); 
     }
 }
