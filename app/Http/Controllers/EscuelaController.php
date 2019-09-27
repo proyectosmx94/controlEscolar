@@ -64,9 +64,17 @@ class EscuelaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        // dd($request->toArray());
+        $escuela = Escuela::find($request->idEscuela);
+            $escuela->nombreEscuela    = $request->nombreEscuela;
+            $escuela->clave            = $request->clave;
+            $escuela->turno            = $request->turno;
+            $escuela->nivel            = $request->nivel;
+        $escuela->save();
+
+        return $escuela;
     }
 
     /**
@@ -87,9 +95,12 @@ class EscuelaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $escuela = Escuela::where('id', $request->id)->first();
+        $escuela->delete();
+        
+        return $escuela;
     }
 
     public function getEscuelas()
@@ -110,10 +121,25 @@ class EscuelaController extends Controller
             return $escuela->nivel;
         })
         ->addColumn('acciones', function($escuela){
-            $btn = '<button id="'.$escuela->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar" onclick="asignarAlumno(this)"><i class="fas fa-edit"></i></button>&nbsp;';
-            $btn .= '<button id="'.$escuela->id.'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar escuela" onclick="eliminarAlumno(this)"><i class="fas fa-trash-alt"></i></button>&nbsp;';
+            $btn = '<button id="'.$escuela->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar" onclick="editarEscuela(this)"><i class="fas fa-edit"></i></button>&nbsp;';
+            $btn .= '<button id="'.$escuela->id.'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar escuela" onclick="eliminarEscuela(this)"><i class="fas fa-trash-alt"></i></button>&nbsp;';
             return $btn;
         })
         ->rawColumns(['clave','nombre','turno','nivel','acciones'])->make();
+    }
+
+    public function datosModalEscuela(Request $request)
+    {
+        $escuela = Escuela::where('id', $request->id)->first();
+
+        $data = array(   
+            'idEscuela'         => $escuela->id, 
+            'editNombreEscuela' => $escuela->nombreEscuela,
+            'editTurno'         => $escuela->turno,
+            'editClave'         => $escuela->clave,
+            'editNivel'         => $escuela->nivel
+        );
+
+        return response()->json($data); 
     }
 }

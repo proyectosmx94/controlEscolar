@@ -2,6 +2,7 @@
 
 @section('content')
 @include('escuela/modalNewEscuela')
+@include('escuela/modalEditEscuela')
 	<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -9,7 +10,7 @@
                 <div class="card-header">
                 	Escuelas
                     <div style="float: right;">
-                        <button class="btn btn-primary btn-sm" id="btnAbrirModalEscuela" data-toggle="tooltip" data-placement="top" title="Nueva escuela"><i class="fas fa-school"></i></button>
+                        <button class="btn btn-primary btn-sm" id="btnAbrirModalEscuela" data-toggle="tooltip" data-placement="top" title="Nueva escuela"><i class="fas fa-plus-circle"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -36,6 +37,57 @@
 
 @section('script')
 <script>
+    function eliminarEscuela(value){
+        var id = value.id;
+
+            swal({
+                title: "¿Estás seguro? ",
+                text: "Los datos de la escuela se eliminaran del sistema  ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#BB1E19',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: "Cancelar",
+                }, function(isConfirm){
+                        if (isConfirm) {     
+                            $.ajax({
+                                url: '{{url("/destroyEscuela")}}',
+                                type: 'get',
+                                data: {id: id},
+                                success: function(data){
+                                    window.location.reload();
+                                },
+                                error: function(data){
+                                    console.log("error");
+                                }
+                            });
+                        }else{
+                            return false;
+                        }
+                    });  
+    }
+    function editarEscuela(value){
+        var url = '{{ url('') }}';
+        $("#editarEscuela").modal("show");
+
+        var id = value.id;
+        console.log(id);
+            $.ajax({
+                url: '{{url("/datosModalEscuela")}}',
+                type: 'get',
+                data: {id: id},
+                success: function(data){
+                    $("#idEscuela").val(data.idEscuela);
+                    $("#editNombreEscuela").val(data.editNombreEscuela);
+                    $("#editClave").val(data.editClave);
+                    $("#editTurno").val(data.editTurno);
+                    $("#editNivel").val(data.editNivel);
+                },
+                error: function(data){
+                    
+                }
+            });
+        }
     $(document).ready(function() {
         var url = '{{ url('') }}';
         $("#btnAbrirModalEscuela").click(function(event) {
@@ -120,7 +172,37 @@
             },
         }).ajax.reload();
 
-        
+        $("#btnEditEscuela").click(function(event) {
+            $.ajax({
+                url: 'editEscuela',
+                type: 'GET',
+                data:{  idEscuela:          $("#idEscuela").val(),
+                        nombreEscuela:      $("#editNombreEscuela").val(),
+                        turno:              $("#editTurno").val(),
+                        clave:              $("#editClave").val(),
+                        nivel:              $("#editNivel").val(),
+                     },
+            })
+            .done(function(data) {
+                swal({
+                    title: "Los datos de la escuela se han actualizado",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                    }, function(isConfirm){
+                        if (isConfirm) {     
+                            window.location.reload();
+                        } 
+                    });  
+            })
+            .fail(function() {
+                toastr.error('Error de sistema. Consulte al administrador');
+            })
+            .always(function() {
+                // console.log("complete");
+            });
+        });
     });  
 </script>
 @endsection

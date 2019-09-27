@@ -39,3 +39,6 @@ Route::get('/datosModalAlumno', 'AlumnoController@datosModalAlumno')->name('dato
 Route::get('/escuela', 'EscuelaController@index')->name('escuela.index');
 Route::get('/storeEscuela', 'EscuelaController@store')->name('store');
 Route::get('/getEscuelas', 'EscuelaController@getEscuelas');
+Route::get('/datosModalEscuela', 'EscuelaController@datosModalEscuela')->name('datosModalEscuela');
+Route::get('/editEscuela', 'EscuelaController@edit')->name('edit');
+Route::get('/destroyEscuela', 'EscuelaController@destroy')->name('destroy');
