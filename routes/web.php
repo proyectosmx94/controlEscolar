@@ -20,6 +20,7 @@ Route::get('/usuariosIndex', 'Auth\RegisterController@index')->name('auth.usuari
 Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name('obtenerEscuelas');
 Route::get('/getUsuarios', 'Auth\RegisterController@getUsuarios')->name('getUsuarios');
 Route::get('/datosModalUsuario', 'Auth\RegisterController@datosModalUsuario')->name('datosModalUsuario');
+Route::get('/editUser', 'Auth\RegisterController@editUser')->name('auth.editUser');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Control escolar
@@ -37,3 +38,4 @@ Route::get('/datosModalAlumno', 'AlumnoController@datosModalAlumno')->name('dato
 // Escuela
 Route::get('/escuela', 'EscuelaController@index')->name('escuela.index');
 Route::get('/storeEscuela', 'EscuelaController@store')->name('store');
+Route::get('/getEscuelas', 'EscuelaController@getEscuelas');

@@ -10,7 +10,7 @@
     <title>Sistema de Control Escolar</title>
     <link rel="icon" href="{{ asset('images/logo.png') }}">
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+<!--     <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

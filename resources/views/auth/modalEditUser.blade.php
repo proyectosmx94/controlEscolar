@@ -5,12 +5,13 @@
                 <h5 class="modal-title"><i class="fas fa-edit"></i> Editar usuario</h5>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="idUser">
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label>Nombre</label>
                     </div>
                     <div class="col-md">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control mayuscula" id="editNombreUsuario">
                     </div>
                 </div>
 
@@ -19,16 +20,16 @@
                         <label>Correo electrónico</label>
                     </div>
                     <div class="col-md">
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control mayuscula" id="editMailUsuario">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-3">
-                        <label>Contraseña</label>
+                        <label>Nueva contraseña</label>
                     </div>
                     <div class="col-md">
-                        <input type="password" class="form-control">
+                        <input type="text" class="form-control" id="editPasswordUsuario">
                     </div>
                 </div>
 
@@ -37,7 +38,7 @@
                         <label>Escuela</label>
                     </div>
                     <div class="col-md">
-                        <select class="form-control" id="idEscuela" name="idEscuela">
+                        <select class="form-control" id="idEscuela">
                                     
                         </select>
                     </div>

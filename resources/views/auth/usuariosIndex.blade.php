@@ -45,14 +45,11 @@
                 type: 'get',
                 data: {id: id},
                 success: function(data){
-                    console.log(data);
-                    // $("#editPrimerApellido").val(data.primerApellido);
-                    // $("#editSegundoApellido").val(data.segundoApellido);
-                    // $("#editNombre").val(data.nombre);
-                    // $("#editCurpAlumno").val(data.curp);
-                    // $("#EditGrado").val(data.grado);
-                    // $("#EditGrupo").val(data.grupo);
-                    // $("#idAlumno").val(data.idAlumno);
+                    // console.log(data);
+                    $("#editNombreUsuario").val(data.name);
+                    $("#editMailUsuario").val(data.email);
+                    $("#idEscuela").val(data.idEscuela);
+                    $("#idUser").val(data.idUser);
                 },
                 error: function(data){
                     console.log("error");
@@ -117,6 +114,40 @@
         })
         .always(function() {
             // console.log("complete");
+        });
+
+        // Editar usuario
+        $("#btnEditUser").click(function(event) {
+            $.ajax({
+                url: '{{url("editUser")}}',
+                type: 'GET',
+                data:{  idUser:     $("#idUser").val(),
+                        name:       $("#editNombreUsuario").val(),
+                        idEscuela:  $("#idEscuela").val(),
+                        email:      $("#editMailUsuario").val(),
+                        password:   $("#editPasswordUsuario").val()
+                     },
+            })
+            .done(function(data) {
+                console.log("Bien");
+                swal({
+                    title: "Los datos del usuario se han actualizado",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                    }, function(isConfirm){
+                        if (isConfirm) {     
+                            window.location.reload();
+                        } 
+                    });  
+            })
+            .fail(function() {
+                toastr.error('Error. Consulte al administrador');
+            })
+            .always(function() {
+
+            });
         });
     });
 </script>

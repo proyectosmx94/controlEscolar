@@ -68,10 +68,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $user = Auth::user();
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
             'idEscuela' => ['required', 'string', 'max:255'],
         ]);
     }
@@ -90,6 +91,27 @@ class RegisterController extends Controller
             'idEscuela' => $data['idEscuela'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function editUser(Request $request)
+    {
+        // dd($request->toArray());
+        
+        $usuario = User::where($request->idUSer)->first();
+
+        $password = "";
+        if (!isset($request->password)) {
+            $password = $usuario->password;
+        }else{
+            $password = Hash::make($request->password);
+        }
+        
+        $usuario->name      = $request->name;
+        $usuario->idEscuela = $request->idEscuela;
+        $usuario->email     = $request->email;
+        $usuario->password  = $password;
+        $usuario->save();
+
     }
 
     public function getUsuarios()
@@ -130,7 +152,8 @@ class RegisterController extends Controller
             'idUser'    => $usuario->id, 
             'name'      => $usuario->name,
             'email'     => $usuario->email,
-            'password'  => $usuario->password
+            'password'  => $usuario->password,
+            'idEscuela' => $usuario->idEscuela
         );
 
         return response()->json($data); 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Escuela;
 use Carbon\Carbon;
+use Yajra\Datatables\Datatables;
 
 class EscuelaController extends Controller
 {
@@ -89,5 +90,30 @@ class EscuelaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getEscuelas()
+    {
+        $escuelas = Escuela::all();
+        // dd($alumnos->toArray());
+        return Datatables::of($escuelas)
+        ->addColumn('clave', function ($escuela){
+            return $escuela->clave;
+        })
+        ->addColumn('nombre', function($escuela){
+            return $escuela->nombreEscuela;
+        })
+        ->addColumn('turno', function($escuela){
+            return $escuela->turno;
+        })
+        ->addColumn('nivel', function($escuela){
+            return $escuela->nivel;
+        })
+        ->addColumn('acciones', function($escuela){
+            $btn = '<button id="'.$escuela->id.'"  class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Editar" onclick="asignarAlumno(this)"><i class="fas fa-edit"></i></button>&nbsp;';
+            $btn .= '<button id="'.$escuela->id.'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar escuela" onclick="eliminarAlumno(this)"><i class="fas fa-trash-alt"></i></button>&nbsp;';
+            return $btn;
+        })
+        ->rawColumns(['clave','nombre','turno','nivel','acciones'])->make();
     }
 }
