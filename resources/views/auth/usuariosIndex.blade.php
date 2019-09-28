@@ -16,8 +16,8 @@
                		<table class="table table-striped table-hover table-bordered dt-responsive" id="tablaUsuarios" style="font-size: .8rem; text-align: center;">
                         <thead>
                             <tr>
-                                <th name="escuela" scope="col">Escuela</th>
                                 <th name="nombre" scope="col">Nombre</th>
+                                <th name="escuela" scope="col">Escuela</th>
                                 <th name="correo" scope="col">Correo</th>
                                 <th class="acciones" name="acciones" scope="col">Acciones</th>
                             </tr>
@@ -56,6 +56,36 @@
                 }
             });
         }
+    
+    function eliminarUsuario(value){
+        var id = value.id;
+
+            swal({
+                title: "¿Estás seguro? ",
+                text: "Los datos del usuario se eliminaran del sistema",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#BB1E19',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: "Cancelar",
+                }, function(isConfirm){
+                        if (isConfirm) {     
+                            $.ajax({
+                                url: '{{url("/destroyUsuario")}}',
+                                type: 'get',
+                                data: {id: id},
+                                success: function(data){
+                                    window.location.reload();
+                                },
+                                error: function(data){
+                                    console.log("error");
+                                }
+                            });
+                        }else{
+                            return false;
+                        }
+                    });  
+        }
     $(document).ready(function() {
         var url = '{{ url('') }}';
         $('#tablaUsuarios').DataTable({
@@ -65,8 +95,8 @@
             serverSide: true,
             ajax: url+"/getUsuarios",
             columns: [
-                { data: 'escuela', name: 'escuela' },
                 { data: 'nombre', name: 'nombre' },
+                { data: 'escuela', name: 'escuela' },
                 { data: 'correo', name: 'correo' },
                 { data: 'acciones', name: 'acciones' },
             ],

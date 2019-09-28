@@ -158,4 +158,12 @@ class RegisterController extends Controller
 
         return response()->json($data); 
     }
+
+    public function destroy(Request $request)
+    {
+        $usuario = User::where('id', $request->id)->first();
+        $usuario->delete();
+        
+        return $usuario;
+    }
 }

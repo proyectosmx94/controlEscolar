@@ -21,6 +21,7 @@ Route::get('/obtenerEscuelas', 'Auth\RegisterController@obtenerEscuelas')->name(
 Route::get('/getUsuarios', 'Auth\RegisterController@getUsuarios')->name('getUsuarios');
 Route::get('/datosModalUsuario', 'Auth\RegisterController@datosModalUsuario')->name('datosModalUsuario');
 Route::get('/editUser', 'Auth\RegisterController@editUser')->name('auth.editUser');
+Route::get('/destroyUsuario', 'Auth\RegisterController@destroy')->name('destroy');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Control escolar
