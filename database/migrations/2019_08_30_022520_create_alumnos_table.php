@@ -21,6 +21,7 @@ class CreateAlumnosTable extends Migration
             $table->string('nombre');
             $table->string('grado');
             $table->string('grupo');
+            $table->string('idTutor')->nullable();
             $table->bigInteger('idEscuela')->unsigned();
             $table->foreign('idEscuela')->references('id')->on('escuelas');
             $table->timestamps();

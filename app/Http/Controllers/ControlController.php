@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Alumno;
 use App\Asistencia;
 use Carbon\Carbon;
+use App\Imports\AlumnosImport;
+
 
 class ControlController extends Controller
 {
@@ -106,5 +108,22 @@ class ControlController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function importExportView()
+    {
+       return view('control.import');
+    }
+
+    public function export() 
+    {
+        // return Excel::download(new AlumnosImport, 'users.xlsx');
+    }
+
+    public function import() 
+    {
+        \Excel::import(new AlumnosImport,request()->file('file'));
+           
+        return back();
     }
 }

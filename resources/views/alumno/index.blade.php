@@ -3,6 +3,7 @@
 @section('content')
 @include('alumno/modalNewAlumno')
 @include('alumno/modalEditAlumno')
+@include('alumno/modalExcel')
 	<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -11,6 +12,8 @@
                 	Alumnos
                     <div style="float: right;">
                         <button class="btn btn-primary btn-sm" id="btnAbrirModalAlumno" data-toggle="tooltip" data-placement="top" title="Nuevo alumno"><i class="fas fa-user-plus"></i></button>
+
+                        <button class="btn btn-success btn-sm" id="btnAbrirModalExcel" data-toggle="tooltip" data-placement="top" title="Importar desde Excel"><i class="fas fa-file-upload"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -97,6 +100,10 @@
             $('#nuevoAlumno').modal('show');
         });
 
+        $("#btnAbrirModalExcel").click(function(event) {
+            $('#cargarExcel').modal('show');
+        });
+
         $("#btnGuardarAlumno").click(function(event) {
             $.ajax({
                 url: 'storeAlumno',
@@ -129,6 +136,22 @@
                 // console.log("complete");
             });
         });
+
+            $('input[type=file]').change(function(e) {
+    $in = $(this);
+    $in.next().html($in.val());
+    
+});
+
+$('.uploadButton').click(function() {
+    var fileName = $("#fileUpload").val();
+    if (fileName) {
+        alert(fileName + " can be uploaded.");
+    }
+    else {
+        alert("Please select a file to upload");
+    }
+});
 
         // cargar datos a tabla
         $('#tablaAlumnos').DataTable({

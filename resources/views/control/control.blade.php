@@ -21,7 +21,7 @@
 							<label id="dia" class="dia"></label>
 							<label>DE</label>
 							<label id="mes" class="mes"></label>
-							<label>DEL</label>
+							<label>DE</label>
 							<label id="anio" class="anio"></label>
 					    </div>
 					    
@@ -38,7 +38,7 @@
 
                 	<div class="form-group" align="center">
                 		<div class="col-sm-4">
-                			<input type="text" class="form-control" id="curp">
+                			<input type="text" class="form-control" id="curp" maxlength="18" style="text-align: center;">
                 		</div>
                 	</div>
                 </div>

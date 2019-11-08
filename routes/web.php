@@ -27,6 +27,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Control escolar
 Route::get('/control', 'ControlController@index')->name('control.index');
 Route::get('storeControl', 'ControlController@store')->name('store');
+//Excel
+Route::get('export', 'ControlController@export')->name('export');
+Route::get('importExportView', 'ControlController@importExportView');
+Route::post('import', 'ControlController@import')->name('import');
 
 //Alumno
 Route::get('/alumno', 'AlumnoController@index')->name('alumno.index');
