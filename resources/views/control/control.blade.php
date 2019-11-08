@@ -8,6 +8,7 @@
 	}
 </style>
 <link href="{{ asset('plugins/Toastr/css/toastr.css') }}" rel="stylesheet">
+<script src="{{ asset('js/app.js') }}" defer></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">

@@ -10,7 +10,7 @@
     <title>Sistema de Control Escolar</title>
     <link rel="icon" href="{{ asset('images/logo.png') }}">
     <!-- Scripts -->
-<!--     <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,6 +31,14 @@
         }
         label{
             font-weight: bolder;
+        }
+
+        footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 50px;
+          justify-content:center
         }
     </style>
     @yield('css')
@@ -93,6 +101,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer style="display:inline-block; text-align:center">
+            <strong>Sistema de Control Escolar</strong> <br>
+            <strong>proyectosmx94@gmail.com</strong>
+        </footer>
     </div>
 </body>
 </html>

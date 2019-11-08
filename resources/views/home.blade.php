@@ -50,3 +50,4 @@
 <script src="{{ asset('plugins/Bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ asset('plugins/Bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('plugins/Font_awesome/js/all.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
