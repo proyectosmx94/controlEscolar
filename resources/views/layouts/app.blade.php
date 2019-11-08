@@ -103,8 +103,10 @@
         </main>
 
         <footer style="display:inline-block; text-align:center">
+            <hr>
             <strong>Sistema de Control Escolar</strong> <br>
             <strong>proyectosmx94@gmail.com</strong>
+            <br>
         </footer>
     </div>
 </body>

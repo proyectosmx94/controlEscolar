@@ -42,6 +42,19 @@
                 			<input type="text" class="form-control" id="curp" maxlength="18" style="text-align: center;">
                 		</div>
                 	</div>
+
+				
+					<audio id="audio">
+					  <source src="{{ asset('audio/correcto.mp3') }}" type="audio/mpeg">
+					</audio>
+
+					<audio id="invalido">
+					  <source src="{{ asset('audio/invalido.mp3') }}" type="audio/mpeg">
+					</audio>
+
+					<audio id="administrador">
+					  <source src="{{ asset('audio/administrador.mp3') }}" type="audio/mpeg">
+					</audio>
                 </div>
 			</div>
 		</div>
@@ -56,10 +69,14 @@
 <script>
 	$(document).ready(function() {
 		$('#curp').focus().select();
+		var audio = document.getElementById("audio");
+		var invalido = document.getElementById("invalido");
+		var administrador = document.getElementById("administrador");
 
 		toastr.options = {
 		    positionClass: 'toast-top-center'
 		};
+		
 		$("#curp").change(function(){
 			var curp= $(this).val();
 
@@ -73,13 +90,16 @@
 						$('#curp').focus().select();
 						if (data =="registrado") {
 							toastr.success('Acceso correcto');
+							audio.play();
 						}else{
 							$("#curp").val('');
+							administrador.play();
 							toastr.error('Alumno no registrado. Consulte al administrador');
 						}
 			        },
 			        error: function(data){
 			            $("#curp").val('');
+			            administrador.play();
 			            toastr.error('Alumno no registrado. Consulte al administrador');
 			            $('#curp').focus().select();
 			        }
@@ -88,6 +108,7 @@
 				toastr.error('Código invalido');
 				$("#curp").val('');
 				$('#curp').focus().select();
+				invalido.play();
 			}
 		});
 
