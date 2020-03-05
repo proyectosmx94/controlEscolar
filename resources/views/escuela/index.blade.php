@@ -9,16 +9,19 @@
             <div class="card">
                 <div class="card-header">
                 	Escuelas
-                    <!-- <div style="float: right;">
+                    <div style="float: right;">
                         <button class="btn btn-primary btn-sm" id="btnAbrirModalEscuela" data-toggle="tooltip" data-placement="top" title="Nueva escuela"><i class="fas fa-plus-circle"></i></button>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="card-body">
                		<table class="table table-striped table-hover table-bordered dt-responsive" id="tablaEscuelas" style="font-size: .8rem; text-align: center;">
                         <thead>
                             <tr>
-                                <th name="clave" scope="col">Nombre de la unidad</th>
-                                <th name="nombre" scope="col">Número</th>
+                                <th>Clave</th>
+                                <th>Nombre</th>
+                                <th>Turno</th>
+                                <th>Nivel</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody style="font-size: 0.8rem;">
