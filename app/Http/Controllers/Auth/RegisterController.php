@@ -89,6 +89,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'idEscuela' => $data['idEscuela'],
+            'rol' => $data['rol'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -110,6 +111,7 @@ class RegisterController extends Controller
         $usuario->idEscuela = $request->idEscuela;
         $usuario->email     = $request->email;
         $usuario->password  = $password;
+        $usuario->rol       = $request->rol;
         $usuario->save();
 
     }
@@ -153,7 +155,8 @@ class RegisterController extends Controller
             'name'      => $usuario->name,
             'email'     => $usuario->email,
             'password'  => $usuario->password,
-            'idEscuela' => $usuario->idEscuela
+            'idEscuela' => $usuario->idEscuela,
+            'rol'       => $usuario->rol
         );
 
         return response()->json($data); 

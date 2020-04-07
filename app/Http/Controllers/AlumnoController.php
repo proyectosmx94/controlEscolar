@@ -38,6 +38,7 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->toArray());
         $usuario =Auth::user();
         $alumno = new Alumno;
             $alumno->curp              = $request->curpAlumno;
@@ -46,7 +47,11 @@ class AlumnoController extends Controller
             $alumno->nombre            = $request->nombre;
             $alumno->grado             = $request->grado;
             $alumno->grupo             = $request->grupo;
+            $alumno->nombreTutor       = $request->nombreTutor;
+            $alumno->telefonoTutor     = $request->telefonoTutor;
+            $alumno->correoTutor       = $request->correoTutor;
             $alumno->idEscuela         = $usuario->idEscuela;
+            $alumno->idRfid            = $request->idRfid;
         $alumno->save();
 
         return $alumno;
@@ -80,7 +85,11 @@ class AlumnoController extends Controller
             $alumno->nombre            = $request->nombre;
             $alumno->grado             = $request->grado;
             $alumno->grupo             = $request->grupo;
+            $alumno->nombreTutor       = $request->nombreTutor;
+            $alumno->telefonoTutor     = $request->telefonoTutor;
+            $alumno->correoTutor       = $request->correoTutor;
             $alumno->idEscuela         = $usuario->idEscuela;
+            $alumno->idRfid            = $request->idRfid;
         $alumno->save();
 
         return $alumno;
@@ -152,7 +161,11 @@ class AlumnoController extends Controller
             'nombre'            => $alumno->nombre,
             'curp'              => $alumno->curp,
             'grado'             => $alumno->grado,
-            'grupo'             => $alumno->grupo
+            'grupo'             => $alumno->grupo,
+            'nombreTutor'       => $alumno->nombreTutor,
+            'telefonoTutor'     => $alumno->telefonoTutor,
+            'correoTutor'       => $alumno->correoTutor,
+            'idRfid'       => $alumno->idRfid,
         );
 
         return response()->json($data); 

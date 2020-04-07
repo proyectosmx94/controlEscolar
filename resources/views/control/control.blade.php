@@ -39,7 +39,7 @@
 
                 	<div class="form-group" align="center">
                 		<div class="col-sm-4">
-                			<input type="text" class="form-control" id="curp" maxlength="18" style="text-align: center;">
+                			<input type="text" class="form-control" id="curp" maxlength="10" style="text-align: center;">
                 		</div>
                 	</div>
 
@@ -80,7 +80,7 @@
 		$("#curp").change(function(){
 			var curp= $(this).val();
 
-			if (curp.length ==18) {
+			if (curp.length ==10) {
 				$.ajax({		
 					url: 'storeControl',
 					type: 'get',
@@ -88,8 +88,8 @@
 					success: function(data){
 						$("#curp").val('');
 						$('#curp').focus().select();
-						if (data =="registrado") {
-							toastr.success('Acceso correcto');
+						if (data[0] =="registrado") {
+							toastr.success(data[1]);
 							audio.play();
 						}else{
 							$("#curp").val('');

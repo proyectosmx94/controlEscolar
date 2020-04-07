@@ -34,11 +34,12 @@
         }
 
         footer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 50px;
-          justify-content:center
+          position:fixed;
+        bottom:0;
+        clear:both;
+        width:100%;
+        height:100px;
+        text-align: center;
         }
     </style>
     @yield('css')
@@ -102,11 +103,10 @@
             @yield('content')
         </main>
 
-        <footer style="display:inline-block; text-align:center">
+        <footer style="margin-bottom: 0px;">
             <hr>
             <strong>Sistema de Control Escolar</strong> <br>
             <strong>proyectosmx94@gmail.com</strong>
-            <br>
         </footer>
     </div>
 </body>

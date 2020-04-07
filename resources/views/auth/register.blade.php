@@ -66,11 +66,22 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="rol" name="rol">
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Escuela</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Escuela') }}</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" id="idEscuela" name="idEscuela">
-                                    
+                                
                                 </select>
                             </div>
                         </div>

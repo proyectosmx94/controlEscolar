@@ -14,8 +14,11 @@ class Alumno extends Model
     'nombre',
     'grado',
     'grupo',
-    'idEscuela',
-    'idTutor'
+    'nombreTutor',
+    'telefonoTutor',
+    'correoTutor',
+    'idRfid',
+    'idEscuela'
   ];
 
     public function escuela()

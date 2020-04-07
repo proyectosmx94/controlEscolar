@@ -7,6 +7,10 @@
             <div class="modal-body">
                 <input type="hidden" id="idAlumno">
                 <div class="form-group row">
+                    <div class="col-md-5">
+                        <label>Nombre(s)</label>
+                        <input type="text" class="form-control mayuscula" id="editNombre">
+                    </div>
                     <div class="col-md">
                         <label>Primer apellido</label>
                         <input type="text" class="form-control mayuscula" id="editPrimerApellido">
@@ -15,16 +19,12 @@
                         <label>Segundo apellido</label>
                         <input type="text" class="form-control mayuscula" id="editSegundoApellido">
                     </div>
-                    <div class="col-md-5">
-                        <label>Nombre(s)</label>
-                        <input type="text" class="form-control mayuscula" id="editNombre">
-                    </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-7">
                         <label>CURP</label>
-                        <input type="text" class="form-control mayuscula" id="editCurpAlumno" maxlength="18">
+                        <input type="text" class="form-control mayuscula" id="editCurpAlumno" maxlength="10">
                     </div>
                     <div class="col-md">
                         <label>Grado</label>
@@ -47,6 +47,30 @@
                             <option value="E">E</option>
                             <option value="F">F</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-7">
+                        <label>Número de identificación</label>
+                        <input type="text" class="form-control" maxlength="10" minlength="10" id="EditIdRfid">
+                    </div>
+                </div>
+
+                <hr>
+                <span style="font-weight: bold; font-size: 1.2rem">Datos del tutor. </span><span>(No obligatorios)</span>
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Nombre del tutor</label>
+                        <input type="text" class="form-control mayuscula" id="EditNombreTutor">
+                    </div>
+                    <div class="col">
+                        <label>Teléfono del tutor</label>
+                        <input type="text" class="form-control mayuscula" id="EditTelefonoTutor">
+                    </div>
+                    <div class="col-5">
+                        <label>Correo del tutor</label>
+                        <input type="text" class="form-control mayuscula" id="EditCorreoNombreTutor">
                     </div>
                 </div>
             </div>

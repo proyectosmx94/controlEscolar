@@ -34,7 +34,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div><br><br><br>
 @endsection
 
 @section('script')
@@ -49,13 +49,17 @@
                 type: 'get',
                 data: {id: id},
                 success: function(data){
+                    $("#idAlumno").val(data.idAlumno);
                     $("#editPrimerApellido").val(data.primerApellido);
                     $("#editSegundoApellido").val(data.segundoApellido);
                     $("#editNombre").val(data.nombre);
                     $("#editCurpAlumno").val(data.curp);
                     $("#EditGrado").val(data.grado);
                     $("#EditGrupo").val(data.grupo);
-                    $("#idAlumno").val(data.idAlumno);
+                    $("#EditNombreTutor").val(data.nombreTutor);
+                    $("#EditTelefonoTutor").val(data.telefonoTutor);
+                    $("#EditCorreoNombreTutor").val(data.correoTutor);
+                    $("#EditIdRfid").val(data.idRfid);
                 },
                 error: function(data){
                     console.log("error");
@@ -113,7 +117,11 @@
                         nombre:             $("#nombre").val(),
                         curpAlumno:         $("#curpAlumno").val(),
                         grado:              $("#grado").val(),
-                        grupo:              $("#grupo").val()
+                        grupo:              $("#grupo").val(),
+                        nombreTutor:        $("#nombreTutor").val(),
+                        telefonoTutor:      $("#telefonoTutor").val(),
+                        correoTutor:        $("#correoTutor").val(),
+                        idRfid:             $("#idRfid").val()
                      },
             })
             .done(function(data) {
@@ -137,101 +145,121 @@
             });
         });
 
-            $('input[type=file]').change(function(e) {
-    $in = $(this);
-    $in.next().html($in.val());
-    
-});
-
-$('.uploadButton').click(function() {
-    var fileName = $("#fileUpload").val();
-    if (fileName) {
-        alert(fileName + " can be uploaded.");
-    }
-    else {
-        alert("Please select a file to upload");
-    }
-});
-
-        // cargar datos a tabla
-        $('#tablaAlumnos').DataTable({
-            responsive: true,
-            fixedHeader: true,
-            processing: true,
-            serverSide: true,
-            ajax: url+"/getAlumnos",
-            columns: [
-                { data: 'grado', name: 'grado' },
-                { data: 'grupo', name: 'grupo' },
-                { data: 'nombre', name: 'nombre' },
-                { data: 'acciones', name: 'acciones' },
-            ],
-      
-            "language": {
-                "sProcessing":    "Procesando...",
-                "sLengthMenu":    "Mostrar _MENU_ registros",
-                "sZeroRecords":   "No se encontraron resultados",
-                "sEmptyTable":    "Ningún dato disponible en esta tabla",
-                "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":   "",
-                "sSearch":        "<span class='fa fa-search'></span> Buscar",
-                "sUrl":           "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":    "Último",
-                "sNext":    "Siguiente",
-                "sPrevious": "Anterior"
-            },
-                "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            },
-      
-            drawCallback: function( settings ) {
-                $('[data-toggle="tooltip"]').tooltip();
-            },
-        }).ajax.reload();
-
-        $("#btnEditAlumno").click(function(event) {
-            $.ajax({
-                url: 'editAlumno',
-                type: 'GET',
-                data:{  idAlumno:           $("#idAlumno").val(),
-                        primerApellido:     $("#editPrimerApellido").val(),
-                        segundoApellido:    $("#editSegundoApellido").val(),
-                        nombre:             $("#editNombre").val(),
-                        curpAlumno:         $("#editCurpAlumno").val(),
-                        grado:              $("#EditGrado").val(),
-                        grupo:              $("#EditGrupo").val(),
-                     },
-            })
-            .done(function(data) {
-                swal({
-                    title: "Los datos del alumno se han actualizado",
-                    type: "success",
-                    confirmButtonClass: "btn-success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                    }, function(isConfirm){
-                        if (isConfirm) {     
-                            window.location.reload();
-                        } 
-                    });  
-            })
-            .fail(function() {
-                toastr.error('Alumno no registrado. Consulte al administrador');
-            })
-            .always(function() {
-                // console.log("complete");
-            });
+        $('input[type=file]').change(function(e) {
+            $in = $(this);
+            $in.next().html($in.val());
+            
         });
+
+        $('.uploadButton').click(function() {
+            var fileName = $("#fileUpload").val();
+            if (fileName) {
+                alert(fileName + " can be uploaded.");
+            }
+            else {
+                alert("Please select a file to upload");
+            }
+        });
+
+            // cargar datos a tabla
+            var table = $('#tablaAlumnos').DataTable({
+                lengthMenu: [[10, 25, 30, 50, -1], [10, 25, 30, 50, "Todos"]],
+                responsive: true,
+                fixedHeader: true,
+                processing: true,
+                serverSide: true,
+                ajax: url+"/getAlumnos",
+                columns: [
+                    { data: 'grado', name: 'grado' },
+                    { data: 'grupo', name: 'grupo' },
+                    { data: 'nombre', name: 'nombre' },
+                    { data: 'acciones', name: 'acciones' },
+                ],
+          
+                "language": {
+                    "sProcessing":    "Procesando...",
+                    "sLengthMenu":    "Mostrar _MENU_ registros",
+                    "sZeroRecords":   "No se encontraron resultados",
+                    "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                    "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":   "",
+                    "sSearch":        "<span class='fa fa-search'></span> Buscar",
+                    "sUrl":           "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":    "Último",
+                    "sNext":    "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+          
+                drawCallback: function( settings ) {
+                    $('[data-toggle="tooltip"]').tooltip();
+                },
+            }).ajax.reload();
+
+            $("#btnEditAlumno").click(function(event) {
+                $.ajax({
+                    url: 'editAlumno',
+                    type: 'GET',
+                    data:{  idAlumno:           $("#idAlumno").val(),
+                            primerApellido:     $("#editPrimerApellido").val(),
+                            segundoApellido:    $("#editSegundoApellido").val(),
+                            nombre:             $("#editNombre").val(),
+                            curpAlumno:         $("#editCurpAlumno").val(),
+                            grado:              $("#EditGrado").val(),
+                            grupo:              $("#EditGrupo").val(),
+                            nombreTutor:        $("#EditNombreTutor").val(),
+                            telefonoTutor:      $("#EditTelefonoTutor").val(),
+                            correoTutor:        $("#EditCorreoNombreTutor").val(),
+                            idRfid:        $("#EditIdRfid").val(),
+                         },
+                })
+                .done(function(data) {
+                    swal({
+                        title: "Los datos del alumno se han actualizado",
+                        type: "success",
+                        confirmButtonClass: "btn-success",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false
+                        }, function(isConfirm){
+                            if (isConfirm) {     
+                                window.location.reload();
+                            } 
+                        });  
+                })
+                .fail(function() {
+                    toastr.error('Alumno no registrado. Consulte al administrador');
+                })
+                .always(function() {
+                    // console.log("complete");
+                });
+            });
+
+            // Setup - add a text input to each footer cell
+            $('#tablaAlumnos thead tr').clone(true).appendTo('#tablaAlumnos thead');
+            $('#tablaAlumnos thead tr:eq(1) th').each(function(i){
+                var title =$(this).text();
+                $(this).html('<input type="text" class="form-control" placeholder="Buscar por '+title+'" />' );
+         
+                $('input',this).on('keyup change', function(){
+                    if(table.column(i).search()!== this.value ){
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+         
     });
-
-
 </script>
 @endsection

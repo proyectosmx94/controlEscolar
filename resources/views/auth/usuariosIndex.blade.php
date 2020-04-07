@@ -50,6 +50,7 @@
                     $("#editMailUsuario").val(data.email);
                     $("#idEscuela").val(data.idEscuela);
                     $("#idUser").val(data.idUser);
+                    $("#rol").val(data.rol);
                 },
                 error: function(data){
                     console.log("error");
@@ -155,7 +156,8 @@
                         name:       $("#editNombreUsuario").val(),
                         idEscuela:  $("#idEscuela").val(),
                         email:      $("#editMailUsuario").val(),
-                        password:   $("#editPasswordUsuario").val()
+                        password:   $("#editPasswordUsuario").val(),
+                        rol:        $("#rol").val()
                      },
             })
             .done(function(data) {

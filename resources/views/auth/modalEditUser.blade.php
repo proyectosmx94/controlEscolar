@@ -35,6 +35,18 @@
 
                 <div class="form-group row">
                     <div class="col-md-3">
+                        <label>Usuario</label>
+                    </div>
+                    <div class="col-md">
+                        <select class="form-control" id="rol" name="rol">
+                            <option value="1">Administrador</option>
+                            <option value="2">Escuela</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
                         <label>Escuela</label>
                     </div>
                     <div class="col-md">
@@ -42,7 +54,7 @@
                                     
                         </select>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
