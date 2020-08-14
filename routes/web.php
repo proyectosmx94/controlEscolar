@@ -38,5 +38,5 @@ Route::get('/editEscuela', 'EscuelaController@edit')->name('edit');
 Route::get('/destroyEscuela', 'EscuelaController@destroy')->name('destroy');
 
 //Reportes
-Route::get('/reportes', 'ReportesController@index')->name('reportes.index');
-Route::get('/consultaAsistencias', 'ReportesController@consultaAsistencias')->name('reportes.consultaAsistencias');
+Route::get('/reportes', 'ReportesController@index')->name('reportes');
+Route::get('/consultaAsistencias', 'ReportesController@consultaAsistencias')->name('consultaAsistencias');
